@@ -1,3 +1,9 @@
+<?php
+include "conn.php";
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +40,33 @@
 
   
 </div>
+<br>
+<div class="alert alert-primary" role="alert">
+ Our Merchandise Is Now 50% Off In Our Store!
+</div>
    <h3>A Comedy Show For MTG Geeks</h3> 
+   <br>
+   <p id="demo"></p>
+   <script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "<h1 class='text-warning' >Thank You For Clicking The Left Button!</h1>";
+}
+function myFunction2() {
+  document.getElementById("demo").innerHTML = "<h1 class='text-info' >Thank You For Clicking The Middle Button!</h1>";
+}
+function myFunction3() {
+  document.getElementById("demo").innerHTML = "<h1 class='text-success' >Thank You For Clicking The Right Button!</h1>";
+}
+function myFunction4() {
+  document.getElementById("demo").innerHTML = "<h1 class='text-danger' ></h1>";
+}
+</script>
+   <div class="btn-group" role="group" aria-label="Basic example">
+  <button onclick="myFunction()" type="button" class="border border-warning btn btn-secondary bg-warning">Left</button>
+  <button onclick="myFunction2()" type="button" class="border border-info btn btn-secondary bg-info">Middle</button>
+  <button onclick="myFunction3()" type="button" class="border border-success btn btn-secondary bg-success">Right</button>
+  <button onclick="myFunction4()" type="button" class="border border-danger btn btn-secondary bg-danger">Clear</button>
+</div>
    <br>
    <br>
    <div class="row">
