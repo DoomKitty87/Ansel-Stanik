@@ -41,8 +41,17 @@
        <div class="col-6 mr-3">
    <iframe width="560" height="315" src="https://www.youtube.com/embed/SttgWDIqiyQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  </div>
- <div class="col-4">
+ <div class="col-3">
      <h5 class="text-info">Parents Play Magic Is Comedy Show Meant To Entertain MTG Players With Terrible Magic Strategy, Played By Parents!</h5>
+ </div>
+ <div class="col-2">
+ <div class="card" style="width: 15rem;">
+  <div class="card-body">
+    <h5 class="card-title text-warning">Check Out DoomKittyGaming, Our Main Editor And Judge's YouTube Channel!</h5>
+    <p class="card-text">Seriously, you should go here. This guy is super helpful to us!</p>
+    <a href="https://www.youtube.com/channel/UC2CTGyLDgTgL-v2dATcyxNA" class="btn btn-primary stretched-link"><h4 class="text-warning">YouTube</h4></a>
+  </div>
+</div>
  </div>
 </div>  
 <br>
