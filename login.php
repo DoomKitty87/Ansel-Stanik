@@ -12,7 +12,11 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $user['password'])) {
             session_start();
             $_SESSION['username'] = $username;
+            $_SESSION['id'] = $user['id'];
             $_SESSION['loggedin'] = 'true';
+            if ($user['type'] == "admin") {
+                $_SESSION['admin'] = 'true';
+            }
             header('Location: home.php');
             die;
         }
@@ -40,6 +44,7 @@ if (isset($_POST['login'])) {
 </head>
 <body>
     <div class="container">
+        <?php include "nav.php"; ?>
         <div class="row">
             <div class="col-4"></div>
             <div class="col-5">

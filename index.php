@@ -1,6 +1,6 @@
 <?php
 include "conn.php";
-
+session_start();
 ?>
 
 
@@ -16,6 +16,9 @@ include "conn.php";
 <body>
     <div class="container">
         <ul class="nav justify-content-center">
+        <?php
+  if (isset($_SESSION['loggedin'])) {
+    if ($_SESSION['loggedin'] == "true") { ?>
   <li class="nav-item">
     <a class="nav-link active text-info" href="index.php">Home</a>
   </li>
@@ -26,8 +29,38 @@ include "conn.php";
     <a class="nav-link text-info" href="index3.php">Info</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link text-info" href="home.php">Dashboard</a>
+    <?php
+    }
+  }
+  ?>
+  <li class="nav-item">
+    <a class="nav-link text-info" href="register.php">Register</a>
+  </li>
+  <?php
+ if (empty($_SESSION)) { ?>
+  <li class="nav-item">
+    <a class="nav-link text-info" href="login.php">Login</a>
+  </li>
+  <?php
+ }
+  if (isset($_SESSION['loggedin'])) {
+    if ($_SESSION['loggedin'] == "true") { ?>
+  <li class="nav-item">
+    <a class="nav-link active text-info" href="logout.php">Logout</a>
+  </li>
+  <?php
+    }
+  }
+  if (isset($_SESSION['loggedin'])) {
+    if ($_SESSION['loggedin'] == "true") { ?>
+  <li class="nav-item">
     <a class="nav-link text-info" href="index4.php" tabindex="-1" aria-disabled="true">Calendar</a>
   </li>
+  <?php
+    }
+  }
+  ?>
 </ul>
 <div class="row">
    

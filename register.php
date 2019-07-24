@@ -35,6 +35,7 @@ if (isset($_POST['register'])) {
 </head>
 <body>
     <div class="container">
+        <?php include "nav.php"; ?>
         <div class="row">
             <div class="col-4"></div>
             <div class="col-5">
