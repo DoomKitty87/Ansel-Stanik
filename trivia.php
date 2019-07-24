@@ -2,7 +2,7 @@
 include "sess.php";
 include "nav.php";
 include "conn.php";
-$random = rand(1,3);
+$random = rand(1,5);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +61,40 @@ $random = rand(1,3);
     <button class="btn btn-primary mr-2" onclick="myFunction13()">Shock Lands (Ravnica)</button>
     <button class="btn btn-danger mr-2" onclick="myFunction13()">Tap Lands (Ravnica)</button>
     <button class="btn btn-info mr-2" onclick="myFunction13()">Check Lands (Dominaria/Ixalan/M15)</button>
+                </div>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+        <?php
+        if ($random == 3) { ?>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-warning">What Format Involves A 99-Card Deck?</h2>
+                <br>
+                <div class="row">
+                <button class="btn btn-success mr-2 ml-2" onclick="myFunction12()">Commander</button>
+    <button class="btn btn-primary mr-2" onclick="myFunction13()">Standard</button>
+    <button class="btn btn-danger mr-2" onclick="myFunction13()">Vintage</button>
+    <button class="btn btn-info mr-2" onclick="myFunction13()">Oathbreaker</button>
+                </div>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+        <?php
+        if ($random == 3) { ?>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-warning">What Format Involves Only Cards From The 4-8 Most Recent Sets?</h2>
+                <br>
+                <div class="row">
+                <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">Modern</button>
+    <button class="btn btn-primary mr-2" onclick="myFunction13()">Commander</button>
+    <button class="btn btn-danger mr-2" onclick="myFunction13()">Legacy</button>
+    <button class="btn btn-info mr-2" onclick="myFunction12()">Standard</button>
                 </div>
             </div>
         </div>
