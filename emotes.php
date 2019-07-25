@@ -192,7 +192,7 @@ include "conn.php";
             $sql = "UPDATE users SET ownedone = $ownedone WHERE id = $id";
             $conn->exec($sql);
             ?>
-            document.location.reload(true)
+            document.location.reload(true);
         }
         </script>
 </body>
