@@ -16,7 +16,8 @@ if (isset($_POST['update'])) {
     $email = $_POST['email'];
     $type = $_POST['type'];
     $status = $_POST['status'];
-    $sql = "UPDATE users SET username = '$username', email = '$email', `type` = '$type', `status` = '$status' WHERE id = $id";
+    $points = $_POST['points'];
+    $sql = "UPDATE users SET username = '$username', email = '$email', `type` = '$type', `status` = '$status', points = $points WHERE id = $id";
     $conn->exec($sql);
 }
 if (isset($_GET['id'])) {
@@ -63,6 +64,11 @@ if (isset($_GET['id'])) {
             <div class="form-root">
                 <label for="status"><h4 class="text-info mr-1">Edit Status</h4></label>
                 <input type="text" name="status" id="status" value="<?php echo $user['status']; ?>"required>
+            </div>
+            <br>
+            <div class="form-root">
+                <label for="points"><h4 class="text-info mr-1">Edit Points</h4></label>
+                <input type="integer" name="points" id="points" value="<?php echo $user['points']; ?>"required>
             </div>
             <br>
             <input type="hidden" name="id" value="<?php echo $user['id']; ?>">

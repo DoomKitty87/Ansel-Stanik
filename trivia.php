@@ -5,6 +5,56 @@ include "conn.php";
 $random = rand(1,10);
 $randomtwo = rand(1,10);
 $randomthree = rand(1,10);
+$id = $_SESSION['id'];
+
+//one pointer
+if (isset($_POST['onepointer'])) {
+    $sql = "UPDATE users SET points = points+1 WHERE id = $id";
+    $conn->exec($sql);
+    header("Location: trivia.php");
+}
+
+
+
+// five pointer
+if (isset($_POST['fivepointer'])) {
+    $sql = "UPDATE users SET points = points+5 WHERE id = $id";
+    $conn->exec($sql);
+    header("Location: trivia.php");
+}
+
+
+
+//ten pointer
+if (isset($_POST['submit'])) {
+if ($_POST['an'] == $_POST['answer']) { 
+    $id = $_SESSION['id'];
+    $sql = "UPDATE users SET points = points+10 WHERE id = $id";
+    $conn->exec($sql);
+    ?>
+    <script>
+alert("Correct!");
+</script>
+<?php
+header("Location: trivia.php");
+} 
+else {
+    ?>
+<script>
+alert("Incorrect.");
+</script>
+<?php
+header("Location: trivia.php");
+}
+}
+
+
+
+$sql = "SELECT * FROM users WHERE id = $id";
+$s = $conn->prepare($sql);
+$s->execute();
+$result = $s->fetch(PDO::FETCH_ASSOC);
+$points = $result['points'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +71,7 @@ $randomthree = rand(1,10);
         <h3 class="text-success">Complete Trivia To Earn Points!</h3>
         <br>
         <?php
-        echo "<h3 classd=text-success>You Have" . $_SESSION['points'] . "Points!</h3>";
+        echo "<h3 class='text-success'>You Have " . $result['points'] . " Points!</h3>";
         ?>
         <br>
         <h4 class="text-success">Easy Questions:</h4>
@@ -33,10 +83,11 @@ $randomthree = rand(1,10);
     <h2 class="text-primary">When Was Magic The Gathering Released?</h2>
     <br>
     <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">2005</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction13()">1995</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction12()">1993</button>
-    <button class="btn btn-info mr-2" onclick="myFunction13()">1999</button>
+</form>
+    <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">2005</button></form>
+    <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">1995</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="onepointer">1993</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">1999</button></form>
     </div>
   </div>
 </div>
@@ -48,10 +99,10 @@ $randomthree = rand(1,10);
             <h2 class="text-danger">What Is The Newest MTG Set? (Late July 2019)</h2>
             <br>
             <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">Dominaria</button>
-                <button class="btn btn-primary mr-2" onclick="myFunction12()">M20</button>
-                <button class="btn btn-danger mr-2" onclick="myFunction13()">Masters 25</button>
-                <button class="btn btn-info mr-2" onclick="myFunction13()">Battlebond</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Dominaria</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="onepointer">M20</button></form>
+                <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Masters 25</button></form>
+                <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Battlebond</button></form>
             </div>
             </div>
             </div>
@@ -63,10 +114,10 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Was The Most Powerful Land Cycle?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction12()">Dual Lands (Unlimited)</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction13()">Shock Lands (Ravnica)</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction13()">Tap Lands (Ravnica)</button>
-    <button class="btn btn-info mr-2" onclick="myFunction13()">Check Lands (Dominaria/Ixalan/M15)</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="onepointer">Dual Lands (Unlimited)</button></form>
+    <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Shock Lands (Ravnica)</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Tap Lands (Ravnica)</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Check Lands (Dominaria/Ixalan/M15)</button></form>
                 </div>
             </div>
         </div>
@@ -80,10 +131,10 @@ $randomthree = rand(1,10);
                 <h2 class="text-secondary">What Format Involves A 99-Card Deck?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction12()">Commander</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction13()">Standard</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction13()">Vintage</button>
-    <button class="btn btn-info mr-2" onclick="myFunction13()">Oathbreaker</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="onepointer">Commander</button></form>
+    <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Standard</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Vintage</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Oathbreaker</button></form>
                 </div>
             </div>
         </div>
@@ -97,10 +148,10 @@ $randomthree = rand(1,10);
                 <h2 class="text-danger">What Format Involves Only Cards From The 4-8 Most Recent Sets?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">Modern</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction13()">Commander</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction13()">Legacy</button>
-    <button class="btn btn-info mr-2" onclick="myFunction12()">Standard</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Modern</button></form>
+    <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Commander</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Legacy</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="onepointer">Standard</button></form>
                 </div>
             </div>
         </div>
@@ -114,10 +165,10 @@ $randomthree = rand(1,10);
                 <h2 class="text-primary">What Was The First MTG "Set"?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction12()">Alpha</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction13()">Legends</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction13()">Kamigawa</button>
-    <button class="btn btn-info mr-2" onclick="myFunction13()">Rath</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="onepointer">Alpha</button></form>
+    <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Legends</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Kamigawa</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Rath</button></form>
                 </div>
             </div>
         </div>
@@ -131,10 +182,10 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">Who Invented Magic The Gathering?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">Brian Kibler</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction12()">Richard Garfield</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction13()">Melissa DeTora</button>
-    <button class="btn btn-info mr-2" onclick="myFunction13()">Ben Stark</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Brian Kibler</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="onepointer">Richard Garfield</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Melissa DeTora</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Ben Stark</button></form>
                 </div>
             </div>
         </div>
@@ -148,9 +199,9 @@ $randomthree = rand(1,10);
                 <h2 class="text-secondary">What Was The Most Recent "Unset"?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">Unhinged</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction12()">Unstable</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction13()">Unglued</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Unhinged</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="onepointer">Unstable</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Unglued</button></form>
                 </div>
             </div>
         </div>
@@ -164,10 +215,10 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Revised Set Came Out In 2018?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">Ixalan</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction13()">Guilds Of Ravnica</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction13()">Dominaria</button>
-    <button class="btn btn-info mr-2" onclick="myFunction12()">Battle For Zendikar</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Ixalan</button></form>
+    <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Guilds Of Ravnica</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Dominaria</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="onepointer">Battle For Zendikar</button></form>
                 </div>
             </div>
         </div>
@@ -181,10 +232,10 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Format Includes A 60 - Card Deck With A Planeswalker And Signature Spell?</h2>
                 <br>
                 <div class="row">
-                <button class="btn btn-success mr-2 ml-2" onclick="myFunction13()">Commander</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction13()">Modern</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction12()">Oathbreaker</button>
-    <button class="btn btn-info mr-2" onclick="myFunction13()">Standard</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Commander</button></form>
+    <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Modern</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="onepointer">Oathbreaker</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Standard</button></form>
                 </div>
             </div>
         </div>
@@ -201,12 +252,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Format Includes A 60 - Card Deck With A Planeswalker And Signature Spell?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Commander</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">Modern</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction11()">Oathbreaker</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">Legacy</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">Standard</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Vintage</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Commander</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Modern</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="fivepointer">Oathbreaker</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Legacy</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">Standard</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Vintage</button></form>
                 </div>
             </div>
         </div>
@@ -220,12 +271,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Revised Set Came Out In 2018?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Battle For Zendikar</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">Ixalan</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction10()">War Of The Spark</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">M20</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction11()">Dominaria</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Guilds Of Ravnica</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Battle For Zendikar</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Ixalan</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">War Of The Spark</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">M20</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="fivepointer">Dominaria</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Guilds Of Ravnica</button></form>
                 </div>
             </div>
         </div>
@@ -239,12 +290,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Was The Most Recent "Unset"?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Battle For Zendikar</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">Unglued</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction10()">War Of The Spark</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">Unhinged</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction11()">Unstable</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Ravnica Allegiance</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Battle For Zendikar</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Unglued</button></form>
+                <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">War Of The Spark</button></form>
+                <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Unhinged</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="fivepointer">Unstable</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Ravnica Allegiance</button></form>
                 </div>
             </div>
         </div>
@@ -258,12 +309,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">Who Invented Magic The Gathering?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Melissa DeTora</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction11()">Richard Garfield</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction10()">Ben Stark</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">Autumn Burchette</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">Brian Kibler</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Sean Plott</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Melissa DeTora</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="fivepointer">Richard Garfield</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Ben Stark</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Autumn Burchette</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">Brian Kibler</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Sean Plott</button></form>
                 </div>
             </div>
         </div>
@@ -277,12 +328,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Was The First Magic "Set"?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Legends</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">Ixalan</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction10()">Rath</button>
-    <button class="btn btn-info mr-2" onclick="myFunction11()">Alpha</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">Revised</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Unlimited</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Legends</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Ixalan</button></form>
+                <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Rath</button></form>
+                <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="fivepointer">Alpha</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">Revised</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Unlimited</button></form>
                 </div>
             </div>
         </div>
@@ -296,12 +347,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Format Involves Only Cards From The 4-8 Most Recent Sets?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Draft</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction11()">Standard</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction10()">Comander</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">Vintage</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">Modern</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Legacy</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Draft</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="fivepointer">Standard</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">Comander</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Vintage</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">Modern</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Legacy</button></form>
                 </div>
             </div>
         </div>
@@ -315,12 +366,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Format Involves A 99 - Card Deck?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Standard</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">Oathbreaker</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction11()">Comander</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">Vintage</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">Modern</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Brawl</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Standard</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Oathbreaker</button></form>
+    <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="fivepointer">Comander</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Vintage</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">Modern</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Brawl</button></form>
                 </div>
             </div>
         </div>
@@ -334,12 +385,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Was The Most Powerful Land Cycle?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Shock Lands (Guilds Of Ravnica, Ravnica Allegiance)</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">Tap Lands (Ravnica Block)</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction11()">Dual Lands (Alpha, Beta, Unlimited)</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">Check Lands (Ixalan, Dominaria, M15)</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">Basic Lands</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">Gain Lands (Fate Reforged, Khans Of Tarkir, M20)</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Shock Lands (Guilds Of Ravnica, Ravnica Allegiance)</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Tap Lands (Ravnica Block)</button></form>
+                <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="fivepointer">Dual Lands (Alpha, Beta, Unlimited)</button></form>
+    <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Check Lands (Ixalan, Dominaria, M15)</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">Basic Lands</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">Gain Lands (Fate Reforged, Khans Of Tarkir, M20)</button></form>
                 </div>
             </div>
         </div>
@@ -353,12 +404,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">What Is The Newest MTG Set? (Late July 2019)</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">Dominaria</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">Guilds Of Ravnica</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction10()">War Of The Spark</button>
-    <button class="btn btn-info mr-2" onclick="myFunction10()">Kaladesh</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">Ixalan</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction11()">M20</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">Dominaria</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">Guilds Of Ravnica</button></form>
+                <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="incorrect">War Of The Spark</button></form>
+                <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="incorrect">Kaladesh</button></form>
+                <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">Ixalan</button></form>
+                <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="fivepointer">M20</button></form>
                 </div>
             </div>
         </div>
@@ -372,12 +423,12 @@ $randomthree = rand(1,10);
                 <h2 class="text-warning">When Was Magic The Gathering Released?</h2>
                 <br>
                 <div class="row">
-    <button class="btn btn-success mr-2 ml-2" onclick="myFunction10()">1996</button>
-    <button class="btn btn-primary mr-2" onclick="myFunction10()">2013</button>
-    <button class="btn btn-danger mr-2" onclick="myFunction10()">1989</button>
-    <button class="btn btn-info mr-2" onclick="myFunction11()">1993</button>
-    <button class="btn btn-secondary mr-2" onclick="myFunction10()">2004</button>
-    <button class="btn btn-warning mr-2" onclick="myFunction10()">2007</button>
+                <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">1996</button></form>
+                <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">2013</button></form>
+                <form action="" method="post"> <button class="btn btn-idanger mr-2 ml-2" name="incorrect">1989</button></form>
+                <form action="" method="post"> <button class="btn btn-info mr-2 ml-2" name="fivepointer">1993</button></form>
+    <form action="" method="post"> <button class="btn btn-secondary mr-2 ml-2" name="incorrect">2004</button></form>
+    <form action="" method="post"> <button class="btn btn-warning mr-2 ml-2" name="incorrect">2007</button></form>
                 </div>
             </div>
         </div>
@@ -398,26 +449,14 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Oathbreaker">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "Oathbreaker") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
             </div>
         </div>
     </div>
         <?php
+        }
         if ($randomthree == 2) { ?> 
         <div class="card">
             <div class="card-body">
@@ -428,26 +467,14 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Dominaria">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "Dominaria") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
             </div>
         </div>
             </div>
         <?php
+        }
         if ($randomthree == 3) { ?> 
         <div class="card">
             <div class="card-body">
@@ -458,26 +485,14 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Unstable">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "Unstable") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
             </div>
         </div>
-            </div>
+</body>
         <?php
+        }
         if ($randomthree == 4) { ?> 
         <div class="card">
             <div class="card-body">
@@ -488,20 +503,10 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Richard Garfield">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
         <?php
-        if ($_POST == "Richard Garfield") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
         }
         ?>
             </div>
@@ -518,26 +523,14 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Alpha">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "Alpha") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
             </div>
         </div>
             </div>
         <?php
+        }
         if ($randomthree == 6) { ?> 
         <div class="card">
             <div class="card-body">
@@ -548,26 +541,14 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Standard">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "Standard") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
             </div>
         </div>
             </div>
         <?php
+        }
         if ($randomthree == 7) { ?> 
         <div class="card">
             <div class="card-body">
@@ -578,22 +559,9 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Commander">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "Commander") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
             </div>
         </div>
             </div>
@@ -608,26 +576,17 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Dual Lands">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
         <?php
-        if ($_POST == "Dual Lands") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
         }
         ?>
             </div>
         </div>
             </div>
         <?php
+        }
         if ($randomthree == 9) { ?> 
         <div class="card">
             <div class="card-body">
@@ -638,27 +597,15 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <input type="hidden" name="an" value="Core Set 2020">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "Core Set 2020") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
             </div>
         </div>
             </div>
 
         <?php
+        }
         if ($randomthree == 10) { ?> 
         <div class="card">
             <div class="card-body">
@@ -669,69 +616,14 @@ $randomthree = rand(1,10);
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
         </form>
-        <?php
-        if ($_POST == "1993") { ?>
-            <script>
-            myFunction9();
-            </script>
-            <?php
-        } 
-        else { ?>
-        <script>
-            myFunction8();
-            </script>
-            <?php
-        }
-        ?>
-                </div>
             </div>
         </div>
-        <?php
+    </div>
+    <?php
         }
         ?>
-    </div>
-    <script>
-            function myFunction9() {
-                <?php
-                $id = $_SESSION['id'];
-                $sql = "UPDATE users SET points = points+10 WHERE id = $id";
-                $conn->exec($sql);
-                ?>
-                alert("Correct!");
-                document.location.reload(true);
-            }
-            function myFunction8() {
-                alert("Incorrect.");
-                document.location.reload(true);
-            }
-            function myFunction11() {
-                <?php
-                $id = $_SESSION['id'];
-                $sql = "UPDATE users SET points = points+5 WHERE id = $id";
-                $conn->exec($sql);
-                ?>
-                alert("Correct!");
-                document.location.reload(true);
-            }
-            function myFunction10() {
-                alert("Incorrect.");
-                document.location.reload(true);
-            }
-            function myFunction12() {
-                <?php
-                $id = $_SESSION['id'];
-                $sql = "UPDATE users SET points = points+1 WHERE id = $id";
-                $conn->exec($sql);
-                ?>
-                alert("Correct!");
-                document.location.reload(true);
-            }
-            function myFunction13() {
-                alert("Incorrect.");
-                document.location.reload(true);
-            }
-    </script>
+        </div>
 </body>
 </html>

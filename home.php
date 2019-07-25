@@ -48,8 +48,8 @@ include "sess.php";
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
-            <h3 class="text-danger">Emotes</h3>
-            <a class="btn btn-primary border border-primary bg-primary" href="#" role="button">Chat</a>
+            <h3 class="text-danger">Live Chat</h3>
+            <a class="btn btn-primary border border-primary bg-primary" href="chat.php" role="button">Chat</a>
                 </div>
             </div>
         </div>
@@ -61,6 +61,14 @@ include "sess.php";
                 <div class="card-body">
             <h3 class="text-primary">Main Webpage</h3>
             <a class="btn btn-primary border border-primary bg-primary" href="index.php" role="button">Home</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+            <h3 class="text-danger">Emotes</h3>
+            <a class="btn btn-primary border border-primary bg-primary" href="emotes.php" role="button">Store</a>
                 </div>
             </div>
         </div>
