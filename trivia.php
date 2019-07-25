@@ -19,6 +19,7 @@ $random = rand(1,10);
         <h3 class="text-success">Complete Trivia To Earn Points!</h3>
         <br>
         <br>
+        <h4 class="text-success">Easy Questions:</h4>
         <br>
         <?php
         if ($random == 1) { ?>
