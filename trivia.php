@@ -20,6 +20,9 @@ $randomthree = rand(1,10);
         <br>
         <h3 class="text-success">Complete Trivia To Earn Points!</h3>
         <br>
+        <?php
+        echo "<h3 classd=text-success>You Have" . $_SESSION['points'] . "Points!</h3>";
+        ?>
         <br>
         <h4 class="text-success">Easy Questions:</h4>
         <br>

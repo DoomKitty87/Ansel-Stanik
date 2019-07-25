@@ -16,6 +16,9 @@ include "conn.php";
     <div class="container">
         <h1 class="text-info">Emote Store</h1>
         <br>
+        <?php
+        echo "<h3 classd=text-success>You Have" . $_SESSION['points'] . "Points!</h3>";
+        ?>
         <br>
          <div class="row">
             <div class="card">
