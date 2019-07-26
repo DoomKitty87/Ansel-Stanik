@@ -76,39 +76,39 @@ $ownednine = $result['ownednine'];
 	});
 	function thisFunction() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "😃";
+	document.getElementById("chat-message").value = text + "😃";
 	}
 	function thisFunction2() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "👿";
+	document.getElementById("chat-message").value = text + "👿";
 	}
 	function thisFunction3() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "😎";
+	document.getElementById("chat-message").value = text + "😎";
 	}
 	function thisFunction4() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "🐈";
+	document.getElementById("chat-message").value = text + "🐈";
 	}
 	function thisFunction5() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "🐕";
+	document.getElementById("chat-message").value = text + "🐕";
 	}
 	function thisFunction6() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "❤️";
+	document.getElementById("chat-message").value = text + "❤️";
 	}
 	function thisFunction7() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "💩";
+	document.getElementById("chat-message").value = text + "💩";
 	}
 	function thisFunction8() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "🙃";
+	document.getElementById("chat-message").value = text + "🙃";
 	}
 	function thisFunction9() {
 	var text = document.getElementById("chat-message").value;
-	document.getElementById("chat-message").value =  text + "🥕";
+	document.getElementById("chat-message").value = text + "🥕";
 	}
 	</script>
 </head>
@@ -170,7 +170,7 @@ $ownednine = $result['ownednine'];
 	<div class="card">
 		<div class="card-body">
 			<?php
-			if ($ownedeight == "true") { ?>
+			if ($ownednine == "true") { ?>
 		<button onclick="thisFunction9()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="carrot.png" alt=""></h4></button>
 		<?php	} 
 		else { ?>
