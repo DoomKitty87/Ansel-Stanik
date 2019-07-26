@@ -13,6 +13,10 @@ $ownedtwo = $result['ownedtwo'];
 $ownedthree = $result['ownedthree'];
 $ownedfour = $result['ownedfour'];
 $ownedfive = $result['ownedfive'];
+$ownedsix = $result['ownedsix'];
+$ownedseven = $result['ownedseven'];
+$ownedeight = $result['ownedeight'];
+$ownednine = $result['ownednine'];
 if (isset($_POST['button14'])) {
     $sql = "UPDATE users SET points = points-10 WHERE id = $id";
     $conn->exec($sql);
@@ -46,6 +50,34 @@ if (isset($_POST['button18'])) {
     $conn->exec($sql);
     $ownedfive = "true";
     $sql = "UPDATE users SET ownedfive = '$ownedfive' WHERE id = $id";
+    $conn->exec($sql);
+}
+if (isset($_POST['button19'])) {
+    $sql = "UPDATE users SET points = points-500 WHERE id = $id";
+    $conn->exec($sql);
+    $ownedsix = "true";
+    $sql = "UPDATE users SET ownedsix = '$ownedsix' WHERE id = $id";
+    $conn->exec($sql);
+}
+if (isset($_POST['button20'])) {
+    $sql = "UPDATE users SET points = points-1000 WHERE id = $id";
+    $conn->exec($sql);
+    $ownedseven = "true";
+    $sql = "UPDATE users SET ownedseven = '$ownedseven' WHERE id = $id";
+    $conn->exec($sql);
+}
+if (isset($_POST['button21'])) {
+    $sql = "UPDATE users SET points = points-10000 WHERE id = $id";
+    $conn->exec($sql);
+    $ownedeight = "true";
+    $sql = "UPDATE users SET ownedeight = '$ownedeight' WHERE id = $id";
+    $conn->exec($sql);
+}
+if (isset($_POST['button22'])) {
+    $sql = "UPDATE users SET points = points-100000 WHERE id = $id";
+    $conn->exec($sql);
+    $ownednine = "true";
+    $sql = "UPDATE users SET ownednine = '$ownednine' WHERE id = $id";
     $conn->exec($sql);
 }
 ?>
@@ -102,7 +134,7 @@ if (isset($_POST['button18'])) {
                     }
                     else if ($points >= 50) { ?>
                         <form action="" method="post">
-                        <button id="button14" name="button15" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
+                        <button id="button15" name="button15" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
                     </form>
                         <?php
                         }
@@ -125,7 +157,7 @@ if (isset($_POST['button18'])) {
                     }
                     else if ($points >= 150) { ?>
                         <form action="" method="post">
-                        <button id="button14" name="button16" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
+                        <button id="button16" name="button16" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
                     </form>
                         <?php
                         }
@@ -151,7 +183,7 @@ if (isset($_POST['button18'])) {
                     }
                     else if ($points >= 250) { ?>
                         <form action="" method="post">
-                        <button id="button14" name="button17" class="btn btn-success mr-2 ml-2 mb-3"><h4>Purchase</h4></button>
+                        <button id="button17" name="button17" class="btn btn-success mr-2 ml-2 mb-3"><h4>Purchase</h4></button>
                     </form>
                         <?php
                         }
@@ -175,7 +207,103 @@ if (isset($_POST['button18'])) {
                     }
                     else if ($points >= 250) { ?>
                     <form action="" method="post">
-                        <button id="button14" name="button18" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
+                        <button id="button18" name="button18" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
+                    </form>
+                    <?php
+                    }
+                    else { ?>
+                    <button class="btn btn-secondary mr-2 ml-2"><h4>Can't Afford</h4></button>
+                    <?php
+                    }
+                    ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-warning">Heart - 500 Points</h1>
+                    <?php
+                    if ($ownedsix =="true") { ?>
+                        <button class="btn btn-danger mr-2 ml-2"><h4>Owned</h4></button>
+                        <?php
+                    }
+                    else if ($points >= 500) { ?>
+                    <form action="" method="post">
+                        <button id="button19" name="button19" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
+                    </form>
+                    <?php
+                    }
+                    else { ?>
+                    <button class="btn btn-secondary mr-2 ml-2"><h4>Can't Afford</h4></button>
+                    <?php
+                    }
+                    ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="card-body">
+        
+            <div class="card">
+                    <div class="col-4">
+                    <h1 class="text-warning">Poop - 1000 Points</h1>
+                    <?php
+                    if ($ownedseven == "true") { ?>
+                        <button class="btn btn-danger mr-2 ml-2 mb-3"><h4>Owned</h4></button>
+                        <?php
+                    }
+                    else if ($points >= 1000) { ?>
+                        <form action="" method="post">
+                        <button id="button20" name="button20" class="btn btn-success mr-2 ml-2 mb-3"><h4>Purchase</h4></button>
+                    </form>
+                        <?php
+                        }
+                        else { ?>
+                        <button class="btn btn-secondary mr-2 ml-2 mb-3"><h4>Can't Afford</h4></button>
+                        <?php
+                        }
+                        ?>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-warning">Upside Down Smiley - 10000 Points</h1>
+                    <?php
+                    if ($ownedeight =="true") { ?>
+                        <button class="btn btn-danger mr-2 ml-2"><h4>Owned</h4></button>
+                        <?php
+                    }
+                    else if ($points >= 10000) { ?>
+                    <form action="" method="post">
+                        <button id="button21" name="button21" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
+                    </form>
+                    <?php
+                    }
+                    else { ?>
+                    <button class="btn btn-secondary mr-2 ml-2"><h4>Can't Afford</h4></button>
+                    <?php
+                    }
+                    ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-warning">Carrot - 100000 Points</h1>
+                    <?php
+                    if ($ownednine =="true") { ?>
+                        <button class="btn btn-danger mr-2 ml-2"><h4>Owned</h4></button>
+                        <?php
+                    }
+                    else if ($points >= 100000) { ?>
+                    <form action="" method="post">
+                        <button id="button22" name="button22" class="btn btn-success mr-2 ml-2"><h4>Purchase</h4></button>
                     </form>
                     <?php
                     }

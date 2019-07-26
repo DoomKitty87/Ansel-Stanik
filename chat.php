@@ -12,6 +12,10 @@ $ownedtwo = $result['ownedtwo'];
 $ownedthree = $result['ownedthree'];
 $ownedfour = $result['ownedfour'];
 $ownedfive = $result['ownedfive'];
+$ownedsix = $result['ownedsix'];
+$ownedseven = $result['ownedseven'];
+$ownedeight = $result['ownedeight'];
+$ownednine = $result['ownednine'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,6 +94,22 @@ $ownedfive = $result['ownedfive'];
 	var text = document.getElementById("chat-message").value;
 	document.getElementById("chat-message").value =  text + "🐕";
 	}
+	function thisFunction6() {
+	var text = document.getElementById("chat-message").value;
+	document.getElementById("chat-message").value =  text + "❤️";
+	}
+	function thisFunction7() {
+	var text = document.getElementById("chat-message").value;
+	document.getElementById("chat-message").value =  text + "💩";
+	}
+	function thisFunction8() {
+	var text = document.getElementById("chat-message").value;
+	document.getElementById("chat-message").value =  text + "🙃";
+	}
+	function thisFunction9() {
+	var text = document.getElementById("chat-message").value;
+	document.getElementById("chat-message").value =  text + "🥕";
+	}
 	</script>
 </head>
 <body>
@@ -115,7 +135,7 @@ $ownedfive = $result['ownedfive'];
 		<button onclick="thisFunction()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="smileyhappy.png" alt=""></h4></button>
 		<?php	} 
 		else { ?>
-		<button class="btn btn-danger mr-2 ml-2"><h4>Unowned</h4></button>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
 		<?php
 		}
 		?>
@@ -128,7 +148,7 @@ $ownedfive = $result['ownedfive'];
 		<button onclick="thisFunction2()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="meanemoji.png" alt=""></h4></button>
 		<?php	} 
 		else { ?>
-		<button class="btn btn-danger mr-2 ml-2"><h4>Unowned</h4></button>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
 		<?php
 		}
 		?>
@@ -141,7 +161,20 @@ $ownedfive = $result['ownedfive'];
 		<button onclick="thisFunction3()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="cooool.png" alt=""></h4></button>
 		<?php	} 
 		else { ?>
-		<button class="btn btn-danger mr-2 ml-2"><h4>Unowned</h4></button>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
+		<?php
+		}
+		?>
+	</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<?php
+			if ($ownedeight == "true") { ?>
+		<button onclick="thisFunction9()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="carrot.png" alt=""></h4></button>
+		<?php	} 
+		else { ?>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
 		<?php
 		}
 		?>
@@ -156,7 +189,7 @@ $ownedfive = $result['ownedfive'];
 		<button onclick="thisFunction4()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="cat-emoji.png" alt=""></h4></button>
 		<?php	} 
 		else { ?>
-		<button class="btn btn-danger mr-2 ml-2"><h4>Unowned</h4></button>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
 		<?php
 		}
 		?>
@@ -169,11 +202,49 @@ $ownedfive = $result['ownedfive'];
 		<button onclick="thisFunction5()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="dog.png" alt=""></h4></button>
 		<?php	} 
 		else { ?>
-		<button class="btn btn-danger mr-2 ml-2"><h4>Unowned</h4></button>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
 		<?php
 		}
 		?>
-	
+	</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<?php
+			if ($ownedsix == "true") { ?>
+		<button onclick="thisFunction6()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="heart.png" alt=""></h4></button>
+		<?php	} 
+		else { ?>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
+		<?php
+		}
+		?>
+	</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<?php
+			if ($ownedseven == "true") { ?>
+		<button onclick="thisFunction7()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="poop.png" alt=""></h4></button>
+		<?php	} 
+		else { ?>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
+		<?php
+		}
+		?>
+	</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<?php
+			if ($ownedeight == "true") { ?>
+		<button onclick="thisFunction8()" class="btn btn-success mr-2 ml-2"><h4><img width=50 src="upsidedown.png" alt=""></h4></button>
+		<?php	} 
+		else { ?>
+		<button class="btn btn-secondary mr-2 ml-2"><h4>Unowned</h4></button>
+		<?php
+		}
+		?>
 	</div>
 	</div>
 	</div>
