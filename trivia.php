@@ -11,12 +11,14 @@ if (isset($_POST['onepointer'])) {
     $sql = "UPDATE users SET points = points+1 WHERE id = $id";
     $conn->exec($sql);
     header("Location: trivia.php");
+    alert("Correct!");
 }
 // five pointer
 if (isset($_POST['fivepointer'])) {
     $sql = "UPDATE users SET points = points+5 WHERE id = $id";
     $conn->exec($sql);
     header("Location: trivia.php");
+    alert("Correct!");
 }
 //ten pointer
 if (isset($_POST['submit'])) {
