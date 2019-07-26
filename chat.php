@@ -1,4 +1,6 @@
 <?php
+// Change link to here to my ip using portforward to get to chat working https://portforward.com/netgear/orbi-rbk50/
+// Enter C:\xampp\php\php.exe -q C:\Users\KitchenLab2.TEKCENTER\Desktop\Ansel-Stanik\chat\php-socket.php into command prompt to fix chat
 include "sess.php";
 include "conn.php";
 $id = $_SESSION['id'];
@@ -124,7 +126,7 @@ $ownednine = $result['ownednine'];
 			<div id="chat-box" class="bg-info"></div>
 			<input type="text" value="<?php if ($_SESSION['admin'] == "true") { echo "🔑";} echo $_SESSION['username']; ?>" name="chat-user" id="chat-user" placeholder="Name" class="chat-input" readonly />
 			<input type="text" name="chat-message" id="chat-message" placeholder="Message"  class="chat-input chat-message" value="" required />
-			<input type="submit" id="btnSend" name="send-chat-message" value="Send" >
+			<input type="submit" id="btnSend" name="send-chat-message" value="Send">
 		</form>
 	</div>
 	<div class="col-1.5">

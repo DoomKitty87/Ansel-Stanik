@@ -33,7 +33,7 @@ include "sess.php";
                 <div class="card-body">
             <h3 class="text-success">My Account</h3>
             <br>
-            <a class="btn btn-primary border border-primary bg-primary" href="#" role="button">Account Details</a>
+            <a class="btn btn-primary border border-primary bg-primary" href="account.php" role="button">Account Details</a>
                 </div>
             </div>
         </div>

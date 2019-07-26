@@ -1,7 +1,7 @@
 <?php
+include "conn.php";
 include "sess.php";
 include "nav.php";
-include "conn.php";
 $random = rand(1,10);
 $randomtwo = rand(1,10);
 $randomthree = rand(1,10);
@@ -10,15 +10,21 @@ $id = $_SESSION['id'];
 if (isset($_POST['onepointer'])) {
     $sql = "UPDATE users SET points = points+1 WHERE id = $id";
     $conn->exec($sql);
-    header("Location: trivia.php");
+    ?>
+    <script>
     alert("Correct!");
+    </script>
+    <?php
 }
 // five pointer
 if (isset($_POST['fivepointer'])) {
     $sql = "UPDATE users SET points = points+5 WHERE id = $id";
     $conn->exec($sql);
-    header("Location: trivia.php");
+    ?>
+    <script>
     alert("Correct!");
+    </script>
+    <?php
 }
 //ten pointer
 if (isset($_POST['submit'])) {
@@ -28,18 +34,16 @@ if ($_POST['an'] == $_POST['answer']) {
     $conn->exec($sql);
     ?>
     <script>
-alert("Correct!");
-</script>
-<?php
-header("Location: trivia.php");
+    alert("Correct!");
+    </script>
+    <?php
 } 
 else {
     ?>
-<script>
-alert("Incorrect.");
-</script>
-<?php
-header("Location: trivia.php");
+    <script>
+    alert("Incorrect.");
+    </script>
+    <?php
 }
 }
 $sql = "SELECT * FROM users WHERE id = $id";
@@ -75,7 +79,6 @@ $points = $result['points'];
     <h2 class="text-primary">When Was Magic The Gathering Released?</h2>
     <br>
     <div class="row">
-</form>
     <form action="" method="post"> <button class="btn btn-success mr-2 ml-2" name="incorrect">2005</button></form>
     <form action="" method="post"> <button class="btn btn-primary mr-2 ml-2" name="incorrect">1995</button></form>
     <form action="" method="post"> <button class="btn btn-danger mr-2 ml-2" name="onepointer">1993</button></form>
@@ -115,8 +118,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($random == 4) { ?>
         <div class="card">
             <div class="card-body">
@@ -132,8 +133,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($random == 5) { ?>
         <div class="card">
             <div class="card-body">
@@ -149,8 +148,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($random == 6) { ?>
         <div class="card">
             <div class="card-body">
@@ -166,8 +163,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($random == 7) { ?>
         <div class="card">
             <div class="card-body">
@@ -183,8 +178,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($random == 8) { ?>
         <div class="card">
             <div class="card-body">
@@ -199,8 +192,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($random == 9) { ?>
         <div class="card">
             <div class="card-body">
@@ -216,8 +207,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($random == 10) { ?>
         <div class="card">
             <div class="card-body">
@@ -255,8 +244,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 2) { ?> 
         <div class="card">
             <div class="card-body">
@@ -274,8 +261,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 3) { ?> 
         <div class="card">
             <div class="card-body">
@@ -293,8 +278,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 4) { ?> 
         <div class="card">
             <div class="card-body">
@@ -312,8 +295,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 5) { ?> 
         <div class="card">
             <div class="card-body">
@@ -331,8 +312,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 6) { ?> 
         <div class="card">
             <div class="card-body">
@@ -350,8 +329,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 7) { ?> 
         <div class="card">
             <div class="card-body">
@@ -369,8 +346,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 8) { ?> 
         <div class="card">
             <div class="card-body">
@@ -388,8 +363,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 9) { ?> 
         <div class="card">
             <div class="card-body">
@@ -407,8 +380,6 @@ $points = $result['points'];
         </div>
         <?php
         }
-        ?>
-        <?php
         if ($randomtwo == 10) { ?> 
         <div class="card">
             <div class="card-body">
@@ -442,7 +413,7 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Oathbreaker">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
             </div>
         </div>
@@ -460,7 +431,7 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Dominaria">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
             </div>
         </div>
@@ -478,11 +449,11 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Unstable">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
             </div>
         </div>
-</body>
+        </div>
         <?php
         }
         if ($randomthree == 4) { ?> 
@@ -496,15 +467,15 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Richard Garfield">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
-        <?php
-        }
-        ?>
+
+
             </div>
         </div>
             </div>
-        <?php
+            <?php
+        }
         if ($randomthree == 5) { ?> 
         <div class="card">
             <div class="card-body">
@@ -516,7 +487,7 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Alpha">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
             </div>
         </div>
@@ -534,7 +505,7 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Standard">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
             </div>
         </div>
@@ -552,12 +523,13 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Commander">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
             </div>
         </div>
             </div>
         <?php
+        }
         if ($randomthree == 8) { ?> 
         <div class="card">
             <div class="card-body">
@@ -569,11 +541,8 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Dual Lands">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
-        <?php
-        }
-        ?>
             </div>
         </div>
             </div>
@@ -590,8 +559,7 @@ $points = $result['points'];
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
                 <input type="hidden" name="an" value="Core Set 2020">
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
-        </form>
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
             </div>
         </div>
             </div>
@@ -608,7 +576,8 @@ $points = $result['points'];
             <div class="form-root">
                 <label for="answer"><h4 class="text-info mr-1">Answer (Capitalize All Words)</h4></label>
                 <input type="text" name="answer" id="answer" required>
-                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button></form>
+                <input type="hidden" name="an" value="1993">
+                <button type="submit" class="btn btn-info" name="submit"><h1>Submit</h1></button>
         </form>
             </div>
         </div>
