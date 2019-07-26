@@ -6,25 +6,18 @@ $random = rand(1,10);
 $randomtwo = rand(1,10);
 $randomthree = rand(1,10);
 $id = $_SESSION['id'];
-
 //one pointer
 if (isset($_POST['onepointer'])) {
     $sql = "UPDATE users SET points = points+1 WHERE id = $id";
     $conn->exec($sql);
     header("Location: trivia.php");
 }
-
-
-
 // five pointer
 if (isset($_POST['fivepointer'])) {
     $sql = "UPDATE users SET points = points+5 WHERE id = $id";
     $conn->exec($sql);
     header("Location: trivia.php");
 }
-
-
-
 //ten pointer
 if (isset($_POST['submit'])) {
 if ($_POST['an'] == $_POST['answer']) { 
@@ -47,9 +40,6 @@ alert("Incorrect.");
 header("Location: trivia.php");
 }
 }
-
-
-
 $sql = "SELECT * FROM users WHERE id = $id";
 $s = $conn->prepare($sql);
 $s->execute();
