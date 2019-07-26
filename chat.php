@@ -122,7 +122,7 @@ $ownednine = $result['ownednine'];
 		<div class="col-9">
 <form name="frmChat" id="frmChat">
 			<div id="chat-box" class="bg-info"></div>
-			<input type="text" value="<?php echo $_SESSION['username']; ?>" name="chat-user" id="chat-user" placeholder="Name" class="chat-input" readonly />
+			<input type="text" value="<?php if ($_SESSION['admin'] == "true") { echo "🔑";} echo $_SESSION['username']; ?>" name="chat-user" id="chat-user" placeholder="Name" class="chat-input" readonly />
 			<input type="text" name="chat-message" id="chat-message" placeholder="Message"  class="chat-input chat-message" value="" required />
 			<input type="submit" id="btnSend" name="send-chat-message" value="Send" >
 		</form>
